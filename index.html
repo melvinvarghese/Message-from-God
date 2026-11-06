@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101a24">
+  <meta name="theme-color" content="#f5f1e7">
   <meta name="description" content="A quiet pause for reflection, hope, and kindness. Find a thoughtful message for the moment you're in.">
   <title>Message from God — A moment of reflection</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
@@ -21,13 +24,12 @@
     <a class="brand" href="./" aria-label="Message from God home">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 40 40" fill="none">
-          <path d="M20 3.5 23.6 15l11.4 5-11.4 4L20 36.5 16.4 24 5 20l11.4-5L20 3.5Z" stroke="currentColor" stroke-width="1.35"/>
-          <circle cx="20" cy="20" r="3.2" fill="currentColor"/>
+          <path d="M8 31C8 18 15 9 31 7c-1 15-9 23-23 24Z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/><path d="M9 30 26 13M17 23l-1-8m5 3 7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
         </svg>
       </span>
       <span class="brand-name">Message <span>from God</span></span>
     </a>
-    <div class="header-note"><span class="status-dot" aria-hidden="true"></span> A quiet moment for you</div>
+    <nav class="header-nav" aria-label="Page actions"><a href="#another-button">New message</a><a href="#share-button">Share</a><a href="#about">About</a></nav>
   </header>
 
   <main id="main">
@@ -78,7 +80,7 @@
       </div>
     </section>
 
-    <section class="intention" aria-label="A moment of reflection">
+    <section class="intention" id="about" aria-label="A moment of reflection">
       <div class="intention-rule"></div>
       <p class="intention-kicker">BEFORE YOU GO</p>
       <h2>Carry a little kindness<br><em>into the world.</em></h2>
