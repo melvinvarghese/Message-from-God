@@ -1545,7 +1545,7 @@ const messages = [
   { text: "There is room for questions in a trusting life; honest inquiry can deepen commitment rather than undo it.", category: "UNCERTAINTY & TRUST" },
   { text: "If you cannot settle the outcome, consider what kind of person you want to be while it unfolds.", category: "UNCERTAINTY & TRUST" },
   { text: "A familiar skill may serve you in unfamiliar weather; recall what you know without assuming every situation is the same.", category: "UNCERTAINTY & TRUST" },
-  { text: "Let uncertainty be a condition you are navigating, not a verdict on your ability to choose.", category: "UNCERTAINTY & TRUST" },
+  { text: "Uncertainty can make a decision feel harder, but it does not erase your ability to weigh what matters and choose carefully.", category: "UNCERTAINTY & TRUST" },
   { text: "The first page of a new chapter may feel blank for a while; you can begin with one true sentence.", category: "UNCERTAINTY & TRUST" },
   { text: "Where the answer cannot be rushed, can you make the waiting kinder with rest, useful questions, or trusted company?", category: "UNCERTAINTY & TRUST" },
   { text: "Trust is not surrendering discernment; it is choosing where to place your confidence and reviewing that choice over time.", category: "TRUST & UNCERTAINTY" },
@@ -2770,6 +2770,56 @@ function chooseMessage() {
   return nextIndex;
 }
 
+// Keep the original message data intact while presenting a clearer set of themes.
+const categoryDisplay = {
+  "BELONGING & ACCEPTANCE": "BELONGING & CONNECTION",
+  "BELONGING & CONNECTION": "BELONGING & CONNECTION",
+  "FRIENDSHIP & CARE": "BELONGING & CONNECTION",
+  "KINDNESS & CONNECTION": "BELONGING & CONNECTION",
+  "COMPASSION & SELF-CARE": "SELF-WORTH & REST",
+  "REST & RENEWAL": "SELF-WORTH & REST",
+  "REST & SELF-WORTH": "SELF-WORTH & REST",
+  "SELF-WORTH & REST": "SELF-WORTH & REST",
+  "COURAGE & SUPPORT": "HOPE & RESILIENCE",
+  "HARD DAYS & SUPPORT": "HOPE & RESILIENCE",
+  "HEALING & HOPE": "HOPE & RESILIENCE",
+  "HEALING & PATIENCE": "HOPE & RESILIENCE",
+  "HOPE & POSSIBILITY": "HOPE & RESILIENCE",
+  "HOPE & RESILIENCE": "HOPE & RESILIENCE",
+  "RESILIENCE & CARE": "HOPE & RESILIENCE",
+  "RESILIENCE & HOPE": "HOPE & RESILIENCE",
+  "COURAGE & BOUNDARIES": "COURAGE & CHANGE",
+  "COURAGE & NEW BEGINNINGS": "COURAGE & CHANGE",
+  "FRESH STARTS": "COURAGE & CHANGE",
+  "PURPOSE & COURAGE": "COURAGE & CHANGE",
+  "FORGIVENESS & REPAIR": "HONESTY & REPAIR",
+  "HONESTY & GRACE": "HONESTY & REPAIR",
+  "UNDERSTANDING & RESPECT": "HONESTY & REPAIR",
+  "GOODNESS & PURPOSE": "PURPOSE & SERVICE",
+  "PURPOSE & SERVICE": "PURPOSE & SERVICE",
+  "PROGRESS & PURPOSE": "PURPOSE & SERVICE",
+  "GRATITUDE & GROWTH": "GRATITUDE & WONDER",
+  "GRATITUDE & HONESTY": "GRATITUDE & WONDER",
+  "GRATITUDE & WONDER": "GRATITUDE & WONDER",
+  "WONDER & OPENNESS": "GRATITUDE & WONDER",
+  "GROWTH & CHANGE": "GROWTH & CHANGE",
+  "PATIENCE & CHANGE": "GROWTH & CHANGE",
+  "PATIENCE & GROWTH": "GROWTH & CHANGE",
+  "PRESENCE & GROWTH": "GROWTH & CHANGE",
+  "PEACE & PRESENCE": "PEACE & PRESENCE",
+  "PEACE IN THE EVERYDAY": "PEACE & PRESENCE",
+  "PATIENCE & PEACE": "PEACE & PRESENCE",
+  "PRESENCE & PEACE": "PEACE & PRESENCE",
+  "RELEASE & CLARITY": "WISDOM & UNCERTAINTY",
+  "TRUST & UNCERTAINTY": "WISDOM & UNCERTAINTY",
+  "UNCERTAINTY & TRUST": "WISDOM & UNCERTAINTY",
+  "WISDOM & ACCEPTANCE": "WISDOM & UNCERTAINTY",
+  "WISDOM & CLARITY": "WISDOM & UNCERTAINTY",
+  "KINDNESS & COMPASSION": "KINDNESS & COMPASSION",
+  "EMPATHY & KINDNESS": "KINDNESS & COMPASSION",
+  "LOVE & ACCEPTANCE": "KINDNESS & COMPASSION"
+};
+
 function renderMessage(index) {
   const message = messages[index];
   textEl.style.opacity = "0";
@@ -2777,7 +2827,7 @@ function renderMessage(index) {
 
   window.setTimeout(() => {
     textEl.textContent = message.text;
-    categoryEl.textContent = message.category;
+    categoryEl.textContent = categoryDisplay[message.category] || message.category;
     numberEl.textContent = String(index + 1).padStart(4, "0");
     textEl.style.opacity = "1";
     textEl.style.transform = "translateY(0)";
