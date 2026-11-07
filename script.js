@@ -2734,7 +2734,7 @@ const messages = [
   { text: "Not knowing how a conversation will go does not prevent you from preparing words that are clear, respectful, and true to you.", category: "UNCERTAINTY & TRUST" },
   { text: "Trust yourself to respond when more becomes known; you do not have to solve a future problem before it has taken shape.", category: "UNCERTAINTY & TRUST" },
   { text: "Some decisions become clearer through lived experience; take a reversible step where you can, then notice what it teaches you.", category: "UNCERTAINTY & TRUST" },
-  { text: "Let uncertainty be a condition you are navigating, not a verdict on your ability to cope or make careful choices.", category: "UNCERTAINTY & TRUST" },
+  { text: "Uncertainty can make a decision feel harder, but it does not erase your ability to weigh what matters and choose carefully.", category: "UNCERTAINTY & TRUST" },
   { text: "You may not control the timing of an answer, but you can decide what support and boundaries will help you wait well.", category: "UNCERTAINTY & TRUST" },
   { text: "When several possibilities remain open, you can hold them lightly and keep tending to the parts of life that are already here.", category: "UNCERTAINTY & TRUST" },
   { text: "A trusted friend cannot guarantee what comes next, but their perspective may help you see choices that fear has crowded out.", category: "UNCERTAINTY & TRUST" },
@@ -2770,6 +2770,56 @@ function chooseMessage() {
   return nextIndex;
 }
 
+// Keep the original message data intact while presenting a clearer set of themes.
+const categoryDisplay = {
+  "BELONGING & ACCEPTANCE": "BELONGING & CONNECTION",
+  "BELONGING & CONNECTION": "BELONGING & CONNECTION",
+  "FRIENDSHIP & CARE": "BELONGING & CONNECTION",
+  "KINDNESS & CONNECTION": "BELONGING & CONNECTION",
+  "COMPASSION & SELF-CARE": "SELF-WORTH & REST",
+  "REST & RENEWAL": "SELF-WORTH & REST",
+  "REST & SELF-WORTH": "SELF-WORTH & REST",
+  "SELF-WORTH & REST": "SELF-WORTH & REST",
+  "COURAGE & SUPPORT": "HOPE & RESILIENCE",
+  "HARD DAYS & SUPPORT": "HOPE & RESILIENCE",
+  "HEALING & HOPE": "HOPE & RESILIENCE",
+  "HEALING & PATIENCE": "HOPE & RESILIENCE",
+  "HOPE & POSSIBILITY": "HOPE & RESILIENCE",
+  "HOPE & RESILIENCE": "HOPE & RESILIENCE",
+  "RESILIENCE & CARE": "HOPE & RESILIENCE",
+  "RESILIENCE & HOPE": "HOPE & RESILIENCE",
+  "COURAGE & BOUNDARIES": "COURAGE & CHANGE",
+  "COURAGE & NEW BEGINNINGS": "COURAGE & CHANGE",
+  "FRESH STARTS": "COURAGE & CHANGE",
+  "PURPOSE & COURAGE": "COURAGE & CHANGE",
+  "FORGIVENESS & REPAIR": "HONESTY & REPAIR",
+  "HONESTY & GRACE": "HONESTY & REPAIR",
+  "UNDERSTANDING & RESPECT": "HONESTY & REPAIR",
+  "GOODNESS & PURPOSE": "PURPOSE & SERVICE",
+  "PURPOSE & SERVICE": "PURPOSE & SERVICE",
+  "PROGRESS & PURPOSE": "PURPOSE & SERVICE",
+  "GRATITUDE & GROWTH": "GRATITUDE & WONDER",
+  "GRATITUDE & HONESTY": "GRATITUDE & WONDER",
+  "GRATITUDE & WONDER": "GRATITUDE & WONDER",
+  "WONDER & OPENNESS": "GRATITUDE & WONDER",
+  "GROWTH & CHANGE": "GROWTH & CHANGE",
+  "PATIENCE & CHANGE": "GROWTH & CHANGE",
+  "PATIENCE & GROWTH": "GROWTH & CHANGE",
+  "PRESENCE & GROWTH": "GROWTH & CHANGE",
+  "PEACE & PRESENCE": "PEACE & PRESENCE",
+  "PEACE IN THE EVERYDAY": "PEACE & PRESENCE",
+  "PATIENCE & PEACE": "PEACE & PRESENCE",
+  "PRESENCE & PEACE": "PEACE & PRESENCE",
+  "RELEASE & CLARITY": "WISDOM & UNCERTAINTY",
+  "TRUST & UNCERTAINTY": "WISDOM & UNCERTAINTY",
+  "UNCERTAINTY & TRUST": "WISDOM & UNCERTAINTY",
+  "WISDOM & ACCEPTANCE": "WISDOM & UNCERTAINTY",
+  "WISDOM & CLARITY": "WISDOM & UNCERTAINTY",
+  "KINDNESS & COMPASSION": "KINDNESS & COMPASSION",
+  "EMPATHY & KINDNESS": "KINDNESS & COMPASSION",
+  "LOVE & ACCEPTANCE": "KINDNESS & COMPASSION"
+};
+
 function renderMessage(index) {
   const message = messages[index];
   textEl.style.opacity = "0";
@@ -2777,7 +2827,7 @@ function renderMessage(index) {
 
   window.setTimeout(() => {
     textEl.textContent = message.text;
-    categoryEl.textContent = message.category;
+    categoryEl.textContent = categoryDisplay[message.category] || message.category;
     numberEl.textContent = String(index + 1).padStart(4, "0");
     textEl.style.opacity = "1";
     textEl.style.transform = "translateY(0)";
